@@ -2,6 +2,12 @@
 
 Like Rack::Static. Except only if there is a static file to serve.
 
+== Use
+
+  use Rack::StaticIfPresent, :urls => ["/"], :root => "public"
+
+This would serve files in all directories from public if they exist, or continue down the middleware chain if they don't.
+
 == Copyright
 
 Copyright (c) 2009 Sam Schenkman-Moore. See LICENSE for details.
