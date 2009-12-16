@@ -5,12 +5,11 @@ begin
   require 'jeweler'
   Jeweler::Tasks.new do |gem|
     gem.name = "rack-static-if-present"
-    gem.summary = %Q{TODO: one-line summary of your gem}
-    gem.description = %Q{TODO: longer description of your gem}
+    gem.summary = "Like Rack::Static. Except only if there is a static file to serve."
+    gem.description = "Not much to explain. Not a lot of code, but wanted it packaged up for easy use/deployment."
     gem.email = "samsm@samsm.com"
     gem.homepage = "http://github.com/samsm/rack-static-if-present"
     gem.authors = ["Sam Schenkman-Moore"]
-    gem.add_development_dependency "thoughtbot-shoulda", ">= 0"
     # gem is a Gem::Specification... see http://www.rubygems.org/read/chapter/20 for additional settings
   end
   Jeweler::GemcutterTasks.new
