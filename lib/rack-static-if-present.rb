@@ -4,16 +4,23 @@ class Rack::StaticIfPresent
     @app = app
     @urls = options[:urls] || ["/favicon.ico"]
     root = options[:root] || Dir.pwd
-    @file_server = Rack::File.new(root)
+    cache_control = options[:cache_control]
+    @file_server = Rack::File.new(root, cache_control)
   end
  
   def call(env)
     path = env["PATH_INFO"]
-    can_serve = @urls.any? { |url| path.index(url) == 0 }
- 
+
+    unless @urls.kind_of? Hash
+      can_serve = @urls.any? { |url| path.index(url) == 0 }
+    else
+      can_serve = @urls.key? path
+    end
+
     if can_serve
-      result = @file_server.call(env)
-      return result if result[0] == 200
+      env["PATH_INFO"] = @urls[path] if @urls.kind_of? Hash
+      file = @file_server.call(env)
+      return file if file[0] == 200
     end
     @app.call(env)
   end
