@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    rack-static-if-present (0.2.1)
+    rack-static-if-present (0.3.0)
       rack (> 1)
 
 GEM
