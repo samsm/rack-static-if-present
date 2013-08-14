@@ -2,10 +2,15 @@ module Rack
   class StaticIfPresent
     def initialize(app, options={})
       @app = app
-      @urls = options[:urls] || ["/favicon.ico"]
-      root = options[:root] || Dir.pwd
-      cache_control = options[:cache_control]
-      @file_server = Rack::File.new(root, cache_control)
+      options = options.dup
+      @urls = options.delete(:urls) || ["/favicon.ico"]
+      root = options.delete(:root)  || Dir.pwd
+      new_options = options.inject({}) do |recased_opts, (k,v)|
+        new_key = k.to_s.split("_").collect(&:capitalize).join("-")
+        recased_opts[new_key] = v
+        recased_opts
+      end
+      @file_server = Rack::File.new(root, new_options)
     end
 
     def call(env)

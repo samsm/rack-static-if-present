@@ -7,10 +7,12 @@ PATH
 GEM
   remote: http://rubygems.org/
   specs:
+    bacon (1.2.0)
     rack (1.5.2)
 
 PLATFORMS
   ruby
 
 DEPENDENCIES
+  bacon
   rack-static-if-present!

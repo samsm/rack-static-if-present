@@ -1,6 +1,6 @@
 require File.expand_path(File.dirname(__FILE__)) + '/../lib/rack-static-if-present'
 require 'rack/mock'
-require 'ruby-debug'
+
 class DummyApp
   def call(env)
     [200, {}, ["Hello World"]]
@@ -27,7 +27,6 @@ describe Rack::StaticIfPresent do
   # it "404s if url root is known but it can't find the file" do
   it "calls down the chain if url root is known but it can't find the file" do
     res = @request.get("/cgi/foo")
-    # res.should.be.not_found
     res.body.should == "Hello World"
   end
 
