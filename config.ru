@@ -1,6 +1,6 @@
 require 'rubygems'
 require 'rack'
-require 'lib/rack-static-if-present'
+require './lib/rack-static-if-present'
 
 class HelloWorld
   def call(env)
